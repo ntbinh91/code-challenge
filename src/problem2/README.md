@@ -1,75 +1,109 @@
-# React + TypeScript + Vite
+# Currency Swap Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern cryptocurrency exchange interface built with React, TypeScript, and Vite. This application provides a user-friendly interface for swapping between different cryptocurrencies with exchange rate calculations.
 
-Currently, two official plugins are available:
+![Currency Swap Application](screenshots/app-screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Bidirectional Conversion**: Convert amounts in either direction with automatic recalculation. Exchange rates are automatically updated whenever currencies are selected.
+- **Token Selection**: Dropdown selectors with token icons and symbols
+- **Swap Functionality**: Quick swap button to reverse the exchange direction
+- **Form Validation**: Built-in validation using Zod schemas
+- **Responsive UI**: Clean, modern interface built with Tailwind CSS and Shadcn UI
+- **Toast Notifications**: User feedback for successful swaps
+- **Loading States**: Smooth loading indicators during data fetching
+
+## Tech Stack
+
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **TanStack Query** - Data fetching and caching
+- **React Hook Form** - Form state management
+- **Zod** - Schema validation
+- **Tailwind CSS** - Styling
+- **Shadcn UI** - UI components
+- **Radix UI** - Accessible component primitives
+- **Lucide React** - Icons
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- bun
+
+### Installation
+
+1. Copy the environment file and update values:
+
+```bash
+cp .env.example .env
+```
+
+2. Install dependencies:
+
+```bash
+bun install
+```
+
+3. Start the development server:
+
+```bash
+bun run dev
+```
+
+4. Open your browser and navigate to the URL shown in the terminal (typically `http://localhost:5173`)
+
+### Available Scripts
+
+- `bun run dev` - Start development server with HMR
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build locally
+- `bun run lint` - Run ESLint
+
+## Project Structure
+
+```
+src/
+├── api/
+│   ├── api-hooks/          # React Query hooks
+│   ├── services/           # API service functions
+│   ├── apiInstance.ts      # Axios instance configuration
+│   ├── api.constants.ts    # API constants
+│   └── queryClient.ts      # TanStack Query client setup
+├── components/
+│   ├── ui/                 # Shadcn UI components
+│   └── CurrencySwapForm.tsx # Main swap form component
+├── helpers/
+│   └── string.helpers.ts   # String utility functions
+├── schemas/
+│   └── currencySwapForm.schema.ts # Form validation schema
+├── types/
+│   └── token.types.ts      # TypeScript type definitions
+├── App.tsx                 # Root component
+├── index.css               # Main app CSS
+└── main.tsx                # Application entry point
+```
+
+## How It Works
+
+1. **Token Price Fetching**: The application fetches token prices from the configured API endpoint using TanStack Query
+2. **Exchange Rate Calculation**: When a user enters an amount, the app calculates the equivalent amount in the target currency based on current prices
+3. **Real-time Updates**: The form automatically recalculates amounts when the user changes currencies or amounts
+4. **Form Submission**: On swap confirmation, the form validates the data and simulates a swap transaction
 
 ## React Compiler
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+This project has the React Compiler enabled. See the [React Compiler documentation](https://react.dev/learn/react-compiler) for more information.
 
-Note: This will impact Vite dev & build performances.
+Note: This may impact Vite dev & build performance.
 
-## Expanding the ESLint configuration
+## ESLint Configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The project uses ESLint with TypeScript support. For production applications, consider enabling type-aware lint rules as described in the [ESLint documentation](https://typescript-eslint.io/getting-started).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## License
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This project is part of the 99tech code challenge.
