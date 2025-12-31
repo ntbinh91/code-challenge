@@ -86,11 +86,13 @@ export const CurrencySwapForm = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const amountStr = parseNumberInputValue(e.target.value);
       form.setValue(FORM_FIELDS.fromAmount, amountStr, { shouldDirty: true });
+      form.trigger(FORM_FIELDS.fromAmount);
 
       // Calculate and update the "to" amount
       if (fromCurrency && toCurrency) {
         const converted = calculateConvertedAmount(amountStr, fromCurrency, toCurrency);
         form.setValue(FORM_FIELDS.toAmount, converted, { shouldDirty: true });
+        form.trigger(FORM_FIELDS.toAmount);
       }
     },
     [form, fromCurrency, toCurrency, calculateConvertedAmount],
@@ -100,11 +102,13 @@ export const CurrencySwapForm = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const amountStr = parseNumberInputValue(e.target.value);
       form.setValue(FORM_FIELDS.toAmount, amountStr, { shouldDirty: true });
+      form.trigger(FORM_FIELDS.toAmount);
 
       // Calculate and update the "from" amount
       if (fromCurrency && toCurrency) {
         const converted = calculateConvertedAmount(amountStr, toCurrency, fromCurrency);
         form.setValue(FORM_FIELDS.fromAmount, converted, { shouldDirty: true });
+        form.trigger(FORM_FIELDS.fromAmount);
       }
     },
     [form, fromCurrency, toCurrency, calculateConvertedAmount],
