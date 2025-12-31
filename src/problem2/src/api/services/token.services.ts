@@ -6,7 +6,7 @@ import { chain } from "lodash";
 export const fetchTokenPrices = async (): Promise<TokenPriceMap> => {
   const tokenPrices = await apiInstance.get<TokenPrice[], unknown>(API_ENDPOINTS.TOKEN_PRICES);
 
-  // Group by currency, get the latest price by date for each, and add the icon url
+  // Group by currency, get the latest price by date for each
   const tokenPriceMap: TokenPriceMap = chain(tokenPrices)
     .filter((item: TokenPrice) => item.price > 0)
     .sortBy("currency")

@@ -4,6 +4,10 @@ A modern cryptocurrency exchange interface built with React, TypeScript, and Vit
 
 ![Currency Swap Application](screenshots/app-screenshot.png)
 
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/code-challenge-mu-lime?style=for-the-badge)
+
+**[View Live Demo](https://code-challenge-mu-lime.vercel.app)**
+
 ## Features
 
 - **Bidirectional Conversion**: Convert amounts in either direction with automatic recalculation. Exchange rates are automatically updated whenever currencies are selected.
@@ -70,7 +74,7 @@ src/
 ├── api/
 │   ├── api-hooks/          # React Query hooks
 │   ├── services/           # API service functions
-│   ├── apiInstance.ts      # Axios instance configuration
+│   ├── apiInstance.ts      # Fetch API instance configuration
 │   ├── api.constants.ts    # API constants
 │   └── queryClient.ts      # TanStack Query client setup
 ├── components/
